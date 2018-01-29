@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 export default class TabsComponent extends Component {
+
   static defaultProps = {
     activeTab: 0
+  }
+
+  static propTypes = {
+    activeTab: PropTypes.number.isRequired,
+    children: PropTypes.arrayOf(PropTypes.element)
   }
 
   state = {
@@ -25,7 +32,6 @@ export default class TabsComponent extends Component {
             this.props.children.map(
               (pane, index) => <li key={index} className='nav-item'>
                 <a 
-                  href='#' 
                   className={ this.tabLinkClasses(index) }
                   onClick={ () => this.setActiveTab(index) } >
                   {pane.props.title}
